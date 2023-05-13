@@ -1,0 +1,13 @@
+module jkff(q,qbar, clk,clr, j,k); 
+output q,qbar; 
+input clk,clr; 
+input j,k; 
+reg q; 
+initial 
+q=0; 
+always@(negedge clk) 
+begin 
+q=(j & (~q)) | ((~k)&q); 
+end 
+assign qbar=~q; 
+endmodule 
