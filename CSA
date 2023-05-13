@@ -1,0 +1,19 @@
+module csadder(a,b, cin, sum, cout); 
+input [3:0] a,b; 
+input cin; 
+output [3:0] sum; 
+output cout; 
+wire[3:0]p; 
+wire c0; 
+wire bp; 
+ripple g1(sum[3:0],c0,a[3:0],b[3:0],cin); 
+propogate_p p1(p,bp,a,b); 
+mux_2x1 g2(cout,c0,cin,bp); 
+endmodule 
+module propogate_p(p,bp,a,b); 
+input [3:0]a,b; 
+output [3:0]p; 
+output bp; 
+assign p=a^b; 
+assign bp=&p; 
+endmodule
