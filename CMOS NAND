@@ -1,0 +1,11 @@
+module cmos_nand(out, a,b); 
+output out; 
+input a,b; 
+wire w; 
+supply1 vcc; 
+supply0 gnd; 
+pmos p1(out,vcc,a); 
+pmos p2(out,vcc,b); 
+nmos n1(w,gnd,b); 
+nmos n2(out,w,a); 
+endmodule 
