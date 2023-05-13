@@ -1,0 +1,37 @@
+module wtm(p, a,b); 
+output [7:0] p; 
+input [3:0] a,b; 
+wire s11,s12,s13,s14,s15,s22,s23,s24,s25,s26,s32,s33,s34,s35,s36,s37; 
+wire c11,c12,c13,c14,c15,c22,c23,c24,c25,c26,c32,c33,c34,c35,c36,c37; 
+wire [6:0] p0,p1,p2,p3; 
+assign p0 = a & {4{b[0]}}; 
+assign p1 = a & {4{b[1]}}; 
+assign p2 = a & {4{b[2]}}; 
+assign p3 = a & {4{b[3]}}; 
+assign p[0] = p0[0]; 
+assign p[1] = s11; 
+assign p[2] = s22; 
+assign p[3] = s32; 
+assign p[4] = s34; 
+assign p[5] = s35; 
+assign p[6] = s36; 
+assign p[7] = s37; 
+//1st stage 
+ha ha11(s11,c11,p0[1],p1[0]); 
+fa fa12(s12,c12,p0[2],p1[1],p2[0]); 
+fa fa13(s13,c13,p0[3],p1[2],p2[1]); 
+fa fa14(s14,c14,p1[3],p2[2],p3[1]); 
+ha ha15(s15,c15,p2[3],p3[2]); 
+//2nd stage 
+ha ha22(s22,c22,c11,s12); 
+fa fa23(s23,c23,p3[0],c12,s13); 
+fa fa24(s24,c24,c13,c32,s14); 
+fa fa25(s25,c25,c14,c24,s15); 
+fa fa26(s26,c26,c15,c25,p3[3]); 
+//3rd stage 
+ha ha32(s32,c32,c22,s23); 
+ha ha34(s34,c34,c23,s24); 
+ha ha35(s35,c35,c34,s25); 
+ha ha36(s36,c36,c35,s26); 
+ha ha37(s37,c37,c36,c26); 
+endmodule 
