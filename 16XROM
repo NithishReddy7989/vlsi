@@ -1,0 +1,50 @@
+module rom_16x4(Output, Address, RD); 
+output reg[3:0] Output; 
+input [3:0] Address; 
+input RD; 
+reg[3:0] ROM[15:0]; 
+initial 
+begin 
+ROM[4'b0000]=4'b1111; 
+ROM[4'b0001]=4'b1110; 
+ROM[4'b0010]=4'b1101; 
+ROM[4'b0011]=4'b1100; 
+ROM[4'b0100]=4'b1011; 
+ROM[4'b0101]=4'b1010; 
+ROM[4'b0110]=4'b1001; 
+ROM[4'b0111]=4'b1000; 
+ROM[4'b1000]=4'b0111; 
+ROM[4'b1001]=4'b0110; 
+ROM[4'b1010]=4'b0101; 
+ROM[4'b1011]=4'b0100; 
+ROM[4'b1100]=4'b0011; 
+ROM[4'b1101]=4'b0010; 
+ROM[4'b1110]=4'b0001; 
+ROM[4'b1111]=4'b0000; 
+end 
+always@(RD , Address) 
+begin 
+if(RD) 
+begin 
+Output=ROM[Address]; 
+end 
+end 
+endmodule 
+Testbench:- 
+initial begin 
+Address = 4'b0000; RD = 1; #50; 
+Address = 4'b0001; RD = 1; #50; 
+Address = 4'b0010; RD = 1; #50; 
+Address = 4'b0011; RD = 1; #50; 
+Address = 4'b0100; RD = 1; #50; 
+Address = 4'b0101; RD = 1; #50; 
+Address = 4'b0110; RD = 1; #50; 
+Address = 4'b0111; RD = 1; #50; 
+Address = 4'b1000; RD = 1; #50; 
+Address = 4'b1001; RD = 1; #50; 
+Address = 4'b1010; RD = 1; #50; 
+Address = 4'b1011; RD = 1; #50; 
+Address = 4'b1100; RD = 1; #50; 
+Address = 4'b1101; RD = 1; #50; 
+Address = 4'b1110; RD = 1; #50; 
+Address = 4'b1111; RD = 1; #50; 
