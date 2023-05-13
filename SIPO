@@ -1,0 +1,13 @@
+module sipo(q, clk,clr,d); 
+output reg [3:0] q; 
+input clk,clr,d; 
+reg [3:0] tmp; 
+always @(posedge clk) 
+if(clr==1) 
+q=4'b0000; 
+else 
+begin 
+tmp = q>>1; 
+q={d,tmp[2:0]}; 
+end 
+endmodule
