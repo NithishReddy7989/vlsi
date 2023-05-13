@@ -1,0 +1,10 @@
+module mux2x1_cmos(out, s,i0,i1); 
+output out; 
+input s,i0,i1; 
+//internal wire 
+wire sbar; 
+not n1(sbar, s); 
+//cmos switches 
+cmos c1(out, i0, sbar, s); 
+cmos c2(out, i1, s, sbar); 
+endmodule
