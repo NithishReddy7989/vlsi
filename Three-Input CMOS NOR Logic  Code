@@ -1,0 +1,32 @@
+Switch level modelling
+module nor3_switch_level (
+  input wire A,
+  input wire B,
+  input wire C,
+  output wire Z
+);
+
+  nmos (A, Z);
+  nmos (B, Z);
+  nmos (C, Z);
+  pmos (A, Z);
+  pmos (B, Z);
+  pmos (C, Z);
+
+  // CMOS transistors
+  // nmos switches
+  // pmos switches
+endmodule
+
+
+Data flow model
+module nor3_dataflow (
+  input wire A,
+  input wire B,
+  input wire C,
+  output wire Z
+);
+
+  assign Z = ~(A | B | C);
+
+endmodule
