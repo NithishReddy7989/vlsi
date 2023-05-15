@@ -1,0 +1,32 @@
+Switch level modelling
+
+module nand3_switch_level (
+  input wire A,
+  input wire B,
+  input wire C,
+  output wire Z
+);
+
+  nmos (A, n1);
+  nmos (B, n1);
+  nmos (C, n1);
+  pmos (A, Z);
+  pmos (B, Z);
+  pmos (C, Z);
+
+  // CMOS transistors
+  // nmos switches
+  // pmos switches
+endmodule
+
+Behavioural modelling 
+module nand3_behavioral (
+  input wire A,
+  input wire B,
+  input wire C,
+  output wire Z
+);
+
+  assign Z = ~(A & B & C);
+
+endmodule
